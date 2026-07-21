@@ -444,13 +444,6 @@ pip install "moviepy==1.0.3"
 
 ---
 
-## 📮 联系方式
-
-- GitHub Issues: https://github.com/26825912/videocut_agent/issues
-- 项目主页: https://github.com/26825912/videocut_agent
-
----
-
 ## 🙏 致谢
 
 感谢以下开源项目的支持：
@@ -459,7 +452,3 @@ pip install "moviepy==1.0.3"
 - LangChain/LangGraph 社区
 - Reflex 框架
 - FFmpeg 项目
-
----
-
-**⭐ 如果这个项目对你有帮助，请给个 Star！**
