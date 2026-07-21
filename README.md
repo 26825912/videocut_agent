@@ -128,7 +128,8 @@ AZURE_SERVICE_KEY=your-key
 UNSPLASH_ACCESS_KEYS=your-unsplash-key
 PIXABAY_API_KEY=your-pixabay-key
 
-# 脚本生成与文案仿写（Dify 工作流）
+# 脚本生成与文案仿写（Dify 工作流 - 可选配置）
+# 注意：以下功能暂未开放，如需使用请联系获取 API 访问权限
 SCRIPTS_API_KEY=your-scripts-key              # 脚本生成 API Key
 SCRIPTS_BASE_URL=https://difyzzc.zuzuche.com/v1/workflows/run
 
