@@ -219,27 +219,32 @@ videocut_agent/
 
 ### Docker 部署语音服务
 
-**⚠️ 注意：仅语音服务支持 Docker 一键部署**
+**✅ 一键部署语音服务**
 
-Docker Compose 配置仅覆盖语音识别和语音合成服务，主后端（FastAPI）和前端（Reflex）仍需手动启动。
+无需初始化 submodule 或下载模型，Docker 会自动处理所有依赖：
 
 ```bash
 cd videocut_agent/docker_services
 
-# 启动 FunASR 语音识别服务（端口 8001）
-docker-compose up -d funasr
-
-# 启动 GPT-SoVITS 语音合成服务（端口 9880）
-docker-compose up -d gpt-sovits
-
-# 或一次性启动所有语音服务
+# 一键启动所有语音服务
 docker-compose up -d
+
+# 或单独启动服务
+docker-compose up -d funasr        # 语音识别（端口 8001）
+docker-compose up -d gpt-sovits    # 语音合成（端口 9880）
 ```
 
+**服务说明**：
+- **FunASR**（端口 8001）：首次启动会自动从 ModelScope 下载中文语音识别模型
+- **GPT-SoVITS**（端口 9880）：自动从 GitHub 克隆源码，首次启动需下载预训练模型（~2.6GB）
+
+**访问地址**：
+- FunASR API: `http://localhost:8001/docs`
+- GPT-SoVITS API: `http://localhost:9880/`
+
 **前置条件**：
-- 已初始化 Git submodule：`git submodule update --init --recursive`
-- 已下载 GPT-SoVITS 预训练模型（~2.6GB）：`python models/download_gpt_sovits.py --required`
-- 需要 NVIDIA GPU 和 Docker GPU 支持
+- Docker 和 Docker Compose
+- NVIDIA GPU 和 Docker GPU 支持（nvidia-docker2）
 
 ### GPT-SoVITS 本地推理
 
