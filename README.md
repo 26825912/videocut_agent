@@ -383,40 +383,6 @@ AZURE_SERVICE_KEY=your-key
 
 ---
 
-## ❓ 常见问题
-
-### Q: Reflex 启动报错 "Node.js not found"
-**A:** 安装 Node.js 18+ → https://nodejs.org/
-
-### Q: 前端显示 "Agent 离线"
-**A:** 
-1. 确认后端在端口 8000 运行
-2. 检查 `video_studio/.env` 中的 `AGENT_API_URL` 配置
-
-### Q: 视频无法播放
-**A:** 检查后端日志，确认 `/data` 静态目录挂载成功
-
-### Q: moviepy 导入错误
-**A:** 本项目需要 moviepy 1.0.3：
-```bash
-pip uninstall moviepy -y
-pip install "moviepy==1.0.3"
-```
-
-### Q: GPT-SoVITS 显存不足
-**A:** 
-- 降低 batch_size
-- 使用 fp16 模式
-- 或改用 Fish Audio 云端 API
-
-### Q: FunASR 识别不准确
-**A:** 
-- 确认音频质量清晰
-- 检查语言设置（`language=zh-cn`）
-- 可切换到 Azure Speech 作为备选
-
----
-
 ## 🤝 贡献指南
 
 欢迎提交 Issue 和 Pull Request！
