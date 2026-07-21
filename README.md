@@ -127,6 +127,16 @@ AZURE_SERVICE_KEY=your-key
 # 素材搜索
 UNSPLASH_ACCESS_KEYS=your-unsplash-key
 PIXABAY_API_KEY=your-pixabay-key
+
+# 脚本生成与文案仿写（Dify 工作流）
+SCRIPTS_API_KEY=your-scripts-key              # 脚本生成 API Key
+SCRIPTS_BASE_URL=https://difyzzc.zuzuche.com/v1/workflows/run
+
+DIFY_API_KEY=your-dify-key                    # 爆款文案拆解 API Key
+COPYWRITE_BASE_URL=https://difyzzc.zuzuche.com/v1/workflows/run
+
+AI_COPYWRITE_API_KEY=your-copywrite-key       # AI 文案改写 API Key
+AI_COPYWRITE_API_BASE_URL=https://difyzzc.zuzuche.com/v1/workflows/run
 ```
 
 ### 3. 启动服务
