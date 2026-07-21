@@ -8,7 +8,7 @@ from datetime import datetime
 from langchain.tools import tool
 
 
-SCRIPTS_BASE_URL = 'https://difyzzc.zuzuche.com/v1/workflows/run'
+SCRIPTS_BASE_URL = os.getenv("SCRIPTS_BASE_URL", "https://difyzzc.zuzuche.com/v1/workflows/run")
 SCRIPTS_API_KEY = os.getenv("SCRIPTS_API_KEY")
 
 
