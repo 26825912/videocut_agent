@@ -27,7 +27,7 @@ class UnsplashImageSearchClient:
     
     def __init__(self):
         self.unsplash_access_keys = self._load_unsplash_keys()
-        self.unsplash_base_url = 'https://api.unsplash.com'
+        self.unsplash_base_url = os.getenv("UNSPLASH_API_URL", "https://api.unsplash.com")
         
     def _load_unsplash_keys(self) -> List[str]:
         """
