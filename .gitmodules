@@ -1,0 +1,3 @@
+[submodule "videocut_agent/models/gpt-sovits"]
+	path = videocut_agent/models/gpt-sovits
+	url = https://github.com/RVC-Boss/GPT-SoVITS.git
