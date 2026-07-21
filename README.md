@@ -68,73 +68,28 @@
 
 ---
 
-## 🎥 核心视频处理能力
+## 🎬 核心能力
 
-### 视频编辑
-- **clip_video** - 精确裁剪（支持流复制无损模式）
-- **merge_videos** - 批量合并视频
-- **resize_and_cut_video** - 智能缩放裁剪
-- **insert_video_at_time** - 在指定位置插入片段
-- **repeat_video** - 循环重复视频
-
-### 格式转换
-- **format_video** - 标准化格式（分辨率、帧率、编码）
-- **convert_mov_to_mp4** - MOV/MP4 格式互转
-- 支持 H.264、HEVC、ProRes 4444（透明通道）
+### 视频剪辑
+视频裁剪、拼接、格式转换、尺寸调整、从指定位置插入片段、循环重复、绿幕抠像、图片转视频
 
 ### 音频处理
-- **add_audio_to_video** - 添加/替换音轨
-- **add_audio_segment_to_video** - 智能音频混合
-- **add_voice_overlay** - 叠加语音（保留原声）
-- **adjust_volume_in_video** - 音量调整
-- **normalize_music_volume** - LUFS 响度标准化（-14 LUFS）
+音频裁剪、拼接、音量调整、音频混合、LUFS 响度标准化、叠加语音（保留原声）
 
 ### 字幕处理
-- **add_hardsub_v2** - 硬字幕（ASS 样式支持）
-- **soft_subtitle** - 软字幕（可关闭）
-- 支持字体、颜色、位置、特效完全自定义
+语音转字幕、视频转字幕、硬字幕/软字幕、ASS 样式支持、逐词级时间戳对齐
 
-### 特效处理
-- **remove_green_screen** - 智能绿幕抠像
-  - 自动背景色识别
-  - 色度容差可调
-  - 边缘平滑优化
-- **image_to_video** - 图片转视频
-- **fill_video** - 视频填充和适配
+### 素材搜索
+图片搜索（Unsplash）、视频搜索（Pixabay）、自动下载和格式化
 
----
+### 语音合成（TTS）
+- **Fish Audio**：云端 API，多语言支持，语音克隆，流式返回
+- **GPT-SoVITS**：本地推理，零样本语音克隆，高质量合成
 
-## 🎙️ 语音技术
-
-### TTS 语音合成
-**Fish Audio（云端）**
-- 多语言支持
-- 语音克隆
-- 流式返回
-- 负载均衡
-
-**GPT-SoVITS（本地）**
-- 零样本语音克隆
-- 参考音频支持
-- 高质量推理
-- Docker 容器化部署
-
-### ASR 语音识别
-**FunASR（推荐）**
-- 专为中文优化
-- 逐词级时间戳
-- GPU 加速
-- 本地模型推理
-
-**Azure Speech**
-- 100+ 语言支持
-- 云端高精度识别
-- 词级时间戳
-
-**统一 ASR 架构**
-- 自动 fallback 机制
-- 工厂模式设计
-- 支持 Whisper、WhisperX、腾讯云
+### 语音识别（ASR）
+- **FunASR**：专为中文优化，逐词级时间戳，GPU 加速
+- **Azure Speech**：100+ 语言支持，云端高精度识别
+- **统一架构**：自动 fallback，支持 Whisper、WhisperX、腾讯云
 
 ---
 
