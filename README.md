@@ -68,7 +68,7 @@
 
 ---
 
-## 📦 安装部署
+## 🚀 快速开始
 
 ### 环境要求
 - Python 3.10+
@@ -76,122 +76,83 @@
 - Node.js 18+（前端需要）
 - CUDA 11.8+（GPU 加速可选）
 
-### 快速开始
+### 1. 克隆并安装
 
-#### 1. 克隆仓库
 ```bash
+# 克隆仓库
 git clone https://github.com/26825912/videocut_agent.git
 cd videocut_agent
-```
 
-#### 2. 安装 FFmpeg
-**Windows**:
-```bash
-choco install ffmpeg
-```
+# 安装 FFmpeg
+# Windows: choco install ffmpeg
+# Linux: sudo apt-get install ffmpeg
+# macOS: brew install ffmpeg
 
-**Linux**:
-```bash
-sudo apt-get install ffmpeg
-```
-
-**macOS**:
-```bash
-brew install ffmpeg
-```
-
-#### 3. 安装 Python 依赖
-```bash
-# 后端依赖
+# 安装后端依赖
 cd videocut_agent
 pip install -r requirements.txt
 
-# 前端依赖
+# 安装前端依赖
 cd ../video_studio
 pip install -r requirements.txt
 ```
 
-#### 4. 配置环境变量
+### 2. 配置环境变量
+
 ```bash
 cd videocut_agent
 cp .env.example .env
 ```
 
-编辑 `.env` 文件，配置 API Keys：
+编辑 `.env` 文件：
+
 ```env
 # LLM API
 GEMINI_API_KEY=your-api-key
 GEMINI_API_BASE=https://api.openai.com/v1
 
-# Fish Audio TTS
+# 语音合成（选择一种）
 TTS_API_URL=https://api.fish.audio/v1/tts
 TTS_API_TOKEN=your-token
 
-# Azure Speech
+# 语音识别（选择一种）
 AZURE_SERVICE_REGION=eastasia
 AZURE_SERVICE_KEY=your-key
 
-# Pixabay 素材搜索
-PIXABAY_API_KEY=your-key
+# 素材搜索
+UNSPLASH_ACCESS_KEYS=your-unsplash-key
+PIXABAY_API_KEY=your-pixabay-key
 ```
 
----
+### 3. 启动服务
 
-## 🚀 启动服务
-
-### 方式一：本地启动
-
-**终端 1 - 启动后端**
+**终端 1 - 后端**
 ```bash
 cd videocut_agent
 python server.py
+# 访问 http://localhost:8000/docs 查看 API 文档
 ```
-访问 http://localhost:8000/docs 查看 API 文档
 
-**终端 2 - 启动前端**
+**终端 2 - 前端**
 ```bash
 cd video_studio
 reflex run
+# 访问 http://localhost:3000 使用 Web 界面
 ```
-访问 http://localhost:3000 使用 Web 界面
-
-### 方式二：Docker 部署（语音服务）
-
-```bash
-cd videocut_agent/docker_services
-
-# 启动 FunASR 语音识别服务
-docker-compose up -d funasr_service
-
-# 启动 GPT-SoVITS 语音合成服务
-docker-compose up -d gpt_sovits_service
-```
-
-**服务端口**：
-- FunASR: http://localhost:8001
-- GPT-SoVITS: http://localhost:9880
 
 ---
 
 ## 💻 使用示例
 
-### 1. 通过 Web 界面使用
-
-打开 http://localhost:3000，在聊天窗口输入：
-
+### Web 界面
+打开 http://localhost:3000，输入：
 ```
 帮我生成一个30秒的产品介绍视频，主题是智能手表
 ```
 
-系统会自动：
-1. 生成视频脚本
-2. 搜索相关素材
-3. 生成配音
-4. 合成字幕
-5. 输出最终视频
+系统会自动完成：脚本生成 → 素材搜索 → 配音生成 → 字幕合成 → 视频输出
 
-### 2. 通过 API 调用
-
+### API 调用
 ```python
 import requests
 
@@ -208,12 +169,10 @@ for line in response.iter_lines():
     print(line.decode('utf-8'))
 ```
 
-### 3. 使用单个 Agent
-
+### 单个 Agent 调用
 ```python
 from videocut_agent.videocut_agent.graph import video_cut_agent
 
-# 视频剪辑
 result = video_cut_agent.invoke({
     "messages": [{"role": "user", "content": "裁剪视频 0-10 秒"}],
     "video_path": "input.mp4"
@@ -240,55 +199,35 @@ videocut_agent/
 │   ├── assert_search_agent/ # 素材搜索 Agent
 │   │
 │   ├── tools/               # 核心工具库
-│   │   ├── video_ops_v2.py  # 视频处理
-│   │   ├── audio_ops_v2.py  # 音频处理
-│   │   ├── subtitle_v2_tools.py # 字幕工具
-│   │   ├── tts_tools.py     # TTS 语音合成
-│   │   ├── asr_tools.py     # ASR 语音识别
-│   │   └── ...
-│   │
 │   ├── models/              # 模型相关
-│   │   ├── gpt-sovits/      # GPT-SoVITS 子模块
-│   │   └── funasr/          # FunASR 模型
-│   │
 │   └── docker_services/     # Docker 容器化
-│       ├── funasr_service/
-│       └── gpt_sovits_service/
 │
 ├── video_studio/            # Reflex 前端
-│   ├── video_studio/
-│   │   ├── video_studio.py  # 主应用
-│   │   ├── state.py         # 状态管理
-│   │   ├── api.py           # Agent API 客户端
-│   │   └── components/      # UI 组件
-│   └── rxconfig.py
-│
 ├── data/                    # 数据目录
-│   ├── clone_voice/         # 语音克隆音频
-│   └── videoscript_json/    # 脚本缓存
-│
 ├── .env                     # 环境变量配置
-├── requirements.txt         # Python 依赖
-└── README.md                # 项目文档
+└── README.md
 ```
 
 ---
 
-## 🔧 配置说明
+## ⚙️ 高级配置
 
-### 语音合成配置
+### Docker 部署语音服务
 
-#### Fish Audio（推荐新手）
-云端 API，零配置，开箱即用：
-```env
-TTS_API_URL=https://api.fish.audio/v1/tts
-TTS_API_TOKEN=your-token
+```bash
+cd videocut_agent/docker_services
+
+# 启动 FunASR 语音识别
+docker-compose up -d funasr_service
+
+# 启动 GPT-SoVITS 语音合成
+docker-compose up -d gpt_sovits_service
 ```
 
-#### GPT-SoVITS（推荐专业用户）
-本地推理，零样本语音克隆，支持商用（MIT 许可证）：
+### GPT-SoVITS 本地推理
 
-**快速启动**
+支持零样本语音克隆（MIT 许可证，商用友好）
+
 ```bash
 # 1. 安装依赖
 cd videocut_agent/models/gpt-sovits
@@ -298,75 +237,27 @@ pip install -r requirements.txt
 cd ..
 python download_gpt_sovits.py --required
 
-# 3. 启动 API 服务
+# 3. 启动服务
 cd gpt-sovits
 python api_v2.py -a 127.0.0.1 -p 9880
 ```
 
-**在代码中使用**
-```python
-# 默认使用 Fish Audio
-text_to_speech_tool(text="测试", voice_name="EnergeticMale1")
+**语音克隆**：
+1. 准备 3-10 秒参考音频放入 `data/clone_voice/`
+2. 编辑 `data/clone_voice/voice_mapping_gpt_sovits.json`
+3. 在代码中使用 `use_local=True` 切换到本地推理
 
-# 切换到本地 GPT-SoVITS
-text_to_speech_tool(text="测试", voice_name="EnergeticMale1", use_local=True)
-```
-
-**硬件要求**
+**硬件要求**：
 - 最低：6-8GB VRAM（fp16）
 - 推荐：12GB+ VRAM
 - 性能：RTX 4060Ti RTF=0.028
 
-**语音克隆**
-1. 准备 3-10 秒参考音频放入 `data/clone_voice/`
-2. 编辑 `data/clone_voice/voice_mapping_gpt_sovits.json` 配置语音映射
-3. 使用时指定 `voice_name` 即可
+### 性能优化
 
-### 语音识别配置
-
-#### FunASR（推荐）
-专为中文优化，逐词级时间戳：
-```bash
-# Docker 方式（推荐）
-docker-compose -f docker_services/docker-compose.yml up -d funasr_service
-
-# 本地方式
-# 会自动下载 Paraformer、FSMN-VAD、CT-Transformer 模型
-```
-
-#### Azure Speech
-云端高精度识别，100+ 语言支持：
-```env
-AZURE_SERVICE_REGION=eastasia
-AZURE_SERVICE_KEY=your-key
-```
-
----
-
-## 📊 性能优化
-
-### GPU 加速
-- 自动检测 NVIDIA GPU
-- NVENC 硬件编码加速
-- FunASR 模型 GPU 推理
-
-### 处理优化
-- 流复制模式（无损快速剪辑）
-- 批量处理优化
-- 智能音频混合
-- LUFS 响度标准化
-
----
-
-## 🤝 贡献指南
-
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交改动 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 提交 Pull Request
+- **GPU 加速**：自动检测 NVIDIA GPU，支持 NVENC 硬件编码
+- **流复制模式**：无损快速剪辑
+- **音频标准化**：LUFS 响度标准化（-14 LUFS）
+- **批量处理**：智能音频混合和批量优化
 
 ---
 
