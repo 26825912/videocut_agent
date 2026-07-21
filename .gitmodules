@@ -1,3 +1,6 @@
 [submodule "videocut_agent/models/gpt-sovits"]
 	path = videocut_agent/models/gpt-sovits
 	url = https://github.com/RVC-Boss/GPT-SoVITS.git
+[submodule "videocut_agent/models/FunASR-source"]
+	path = videocut_agent/models/FunASR-source
+	url = https://github.com/alibaba-damo-academy/FunASR.git
