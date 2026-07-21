@@ -1,0 +1,53 @@
+{
+  "provider": "funasr",
+  "fallback_provider": "azure",
+  "language": "zh-cn",
+  "providers": {
+    "funasr": {
+      "model_size": "large",
+      "use_gpu": true,
+      "batch_size": 1
+    },
+    "azure": {
+      "subscription_key": null,
+      "service_region": "eastasia",
+      "request_word_level_timestamps": true
+    },
+    "whisperx": {
+      "model_size": "base",
+      "device": "auto",
+      "compute_type": "float32"
+    },
+    "openai": {
+      "api_key": null,
+      "model": "whisper-1"
+    },
+    "tencent": {
+      "secret_id": null,
+      "secret_key": null,
+      "region": "ap-beijing"
+    }
+  },
+  "_comments": {
+    "provider": "当前使用的ASR提供商",
+    "fallback_provider": "主提供商不可用时的备用提供商",
+    "language": "语言设置，支持: zh-cn, en-us, ja, ko 等",
+    "providers": {
+      "funasr": "阿里达摩院开源模型，中文效果最佳，支持逐词时间戳",
+      "azure": "微软Azure认知服务，需要订阅密钥，多语言支持好",
+      "whisperx": "OpenAI Whisper + 对齐算法，开源免费",
+      "openai": "OpenAI官方API，需要API密钥",
+      "tencent": "腾讯云语音识别，需要密钥"
+    },
+    "如何切换提供商": [
+      "1. 修改此配置文件中的 provider 字段",
+      "2. 或使用代码: from tools.asr_base import switch_asr_provider; switch_asr_provider('funasr')",
+      "3. 或使用工具函数直接指定: get_transcriber(provider='azure')"
+    ],
+    "环境变量设置": {
+      "Azure": ["AZURE_SERVICE_KEY", "AZURE_SERVICE_REGION"],
+      "OpenAI": ["OPENAI_API_KEY"],
+      "Tencent": ["TENCENT_SECRET_ID", "TENCENT_SECRET_KEY"]
+    }
+  }
+}

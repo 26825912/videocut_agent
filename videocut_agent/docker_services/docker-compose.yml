@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # FunASR 语音识别服务
+  funasr:
+    build:
+      context: ./funasr_service
+      dockerfile: Dockerfile
+    container_name: funasr-service
+    ports:
+      - "8001:8001"
+    volumes:
+      # 挂载模型目录
+      - ../models/funasr:/models/funasr:ro
+      # 挂载临时文件目录
+      - ./temp/funasr:/tmp:rw
+    environment:
+      - USE_GPU=true
+      - LANGUAGE=zh
+      - FUNASR_MODEL_DIR=/models/funasr
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+    networks:
+      - voice-network
+
+  # GPT-SoVITS 语音合成服务
+  gpt-sovits:
+    build:
+      context: ../models
+      dockerfile: ../docker_services/gpt_sovits_service/Dockerfile
+    container_name: gpt-sovits-service
+    ports:
+      - "9880:9880"
+    volumes:
+      # 挂载模型权重
+      - ../models/gpt-sovits/GPT_SoVITS/pretrained_models:/app/GPT_SoVITS/pretrained_models:ro
+      # 挂载配置文件
+      - ../models/gpt-sovits/GPT_SoVITS/configs:/app/GPT_SoVITS/configs:ro
+      # 挂载参考音频
+      - ../../data/clone_voice:/app/data/clone_voice:ro
+      # 挂载输出目录
+      - ./temp/gpt-sovits:/app/output:rw
+    environment:
+      - USE_GPU=true
+      - DEVICE=cuda
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9880/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    restart: unless-stopped
+    networks:
+      - voice-network
+    depends_on:
+      - funasr
+
+networks:
+  voice-network:
+    driver: bridge
+
+volumes:
+  funasr-temp:
+  gpt-sovits-temp:

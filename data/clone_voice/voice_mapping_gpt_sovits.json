@@ -1,0 +1,17 @@
+{
+  "EnergeticMale1": {
+    "audio": "EnergeticMale1.wav",
+    "text": "这是一段充满活力的男声示例",
+    "lang": "zh"
+  },
+  "EnergeticMale2": {
+    "audio": "EnergeticMale2.wav",
+    "text": "这是另一段充满活力的男声示例",
+    "lang": "zh"
+  },
+  "小辉": {
+    "audio": "xiaohui.wav",
+    "text": "大家好，我是小辉",
+    "lang": "zh"
+  }
+}

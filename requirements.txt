@@ -1,0 +1,55 @@
+# ===== Web 框架 & 服务 =====
+fastapi
+uvicorn
+reflex
+django
+
+# ===== LangChain / LangGraph (AI Agent) =====
+langchain
+langchain-core
+langchain-openai
+langgraph
+
+# ===== 数据模型 & 环境配置 =====
+pydantic
+typing_extensions
+python-dotenv
+
+# ===== HTTP & 网络 =====
+requests
+httpx
+msgpack
+
+# ===== 视频处理 =====
+moviepy
+ffmpeg-python
+ffmpeg-normalize
+imageio
+yt-dlp
+
+# ===== 图像处理 =====
+opencv-python
+Pillow
+scikit-image
+
+# ===== 音频处理 =====
+pydub
+soundfile
+
+# ===== 字幕处理 =====
+pysubs2
+
+# ===== Azure 语音服务 =====
+azure-cognitiveservices-speech
+
+# ===== 数据处理 =====
+numpy
+pandas
+openpyxl
+
+# ===== 机器学习 =====
+scikit-learn
+
+# ===== 工具库 =====
+tqdm
+ipython

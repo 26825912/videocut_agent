@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+
+# Temporary files
+temp/
+*.tmp
+*.log
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+!README.md
+
+# Model files (will be mounted as volumes)
+pretrained_models/
+
+# Data files
+*.wav
+*.mp3

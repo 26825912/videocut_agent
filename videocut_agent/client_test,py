@@ -1,0 +1,20 @@
+import requests
+import json
+
+# 配置API地址
+BASE_URL = "http://localhost:8000"
+
+# 发送查询
+def query_agent(prompt):
+    response = requests.post(
+        f"{BASE_URL}/query",
+        json={
+            "query": prompt,
+            "temperature": 0.2
+        }
+    )
+    return response.json()
+
+# 使用示例
+result = query_agent("https://www.youtube.com/shorts/m_OoEFR0uwI?t=40&feature=share根据这个爆款视频仿写一个如何学习的15-20秒以内的视频文案")
+print(result)

@@ -1,0 +1,2 @@
+file 'C:\Users\ddf\Desktop\zzc\code\seo_video_generate_main\seo_video_generate\data\result_video\clip_video\Schrodinger's cat_e731debc-4c4d-428a-86a7-f42cd23b36d6.mp4'
+file 'C:\Users\ddf\Desktop\zzc\code\seo_video_generate_main\seo_video_generate\data\result_video\clip_video\Schrodinger's cat_e731debc-4c4d-428a-86a7-f42cd23b36d6.mp4'

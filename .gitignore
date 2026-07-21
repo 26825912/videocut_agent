@@ -1,0 +1,98 @@
+# 环境变量和敏感配置
+.env
+*.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 模型文件和大文件
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.h5
+*.pb
+*.onnx
+*.tflite
+
+# 语音合成模型（GPT-SoVITS）
+videocut_agent/models/gpt-sovits/GPT_SoVITS/pretrained_models/
+videocut_agent/models/gpt-sovits/GPT_weights/
+videocut_agent/models/gpt-sovits/SoVITS_weights/
+videocut_agent/models/gpt-sovits/trained/
+
+# 语音识别模型（FunASR）
+videocut_agent/models/funasr/*/model.pt
+videocut_agent/models/funasr/paraformer_zh/
+videocut_agent/models/funasr/vad_zh/
+videocut_agent/models/funasr/speech_*/
+videocut_agent/models/funasr/punc_*/
+
+# 音视频文件
+*.wav
+*.mp3
+*.mp4
+*.avi
+*.flac
+*.m4a
+*.ogg
+
+# 临时文件和缓存
+*.log
+*.tmp
+.cache/
+tmp/
+temp/
+
+# 数据目录（根据需要调整）
+data/output/
+data/temp/
+data/cache/
+
+# Claude Code
+.claude/
+
+# 其他
+.pytest_cache/
+.coverage
+htmlcov/
+*.lock
+reflex.lock
