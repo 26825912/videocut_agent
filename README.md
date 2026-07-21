@@ -83,6 +83,11 @@
 git clone https://github.com/26825912/videocut_agent.git
 cd videocut_agent
 
+# （可选）如需本地语音服务，初始化 submodule
+# 注意：GPT-SoVITS 和 FunASR 源码仅在本地推理时需要
+# 如果只使用云端 API（Fish Audio / Azure），可跳过此步骤
+git submodule update --init --recursive
+
 # 安装 FFmpeg
 # Windows: choco install ffmpeg
 # Linux: sudo apt-get install ffmpeg
